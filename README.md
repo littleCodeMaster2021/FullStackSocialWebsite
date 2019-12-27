@@ -1,14 +1,6 @@
-# cis557-project-photo-sharing-social-network-app-codemasters
 ## Project Deployment Link in Heroku:<br/>
 Swagger UI: https://calm-shore-02244.herokuapp.com/ <br/>
 Homepage: https://calm-shore-02244.herokuapp.com/index <br/>
-## Team Name: codemasters <br/>
-## Team members: <br/>
-|Name|Penn ID|
-|---|---|
-|Yuhan Gu| 60960187 |
-|Yuwei Liu| 68008489|
-|Shuai Zheng| 55693972|
 ## Link to wiki: <br/>
 Project wiki: https://github.com/cis557/cis557-project-photo-sharing-social-network-app-codemasters/wiki/Project-Documentation
 <br/>
