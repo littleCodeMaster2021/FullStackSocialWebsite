@@ -1,0 +1,1401 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a API documentation for cis557-project-photo-sharing-social-network-app-codemasters team project",
+    "version": "1.0.0",
+    "title": "Swagger photo-sharing-social-network-app-codemasters",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "yuhangu@seas.upenn.edu"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:3000",
+  "tags": [
+    {
+      "name": "Post functionalities",
+      "description": "Operations about creating and displaying new posts",
+      "externalDocs": {
+        "description": "Display the post activities of user",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "User Profile",
+      "description": "Operations about creating and updating user's Profile",
+      "externalDocs": {
+        "description": "Account management",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "Account management",
+      "description": "Operations about user's account",
+      "externalDocs": {
+        "description": "Account management",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "Account management"
+        ],
+        "summary": "Create new account",
+        "description": "New user creats user account",
+        "operationId": "register",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserFile"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/signIn": {
+      "post": {
+        "tags": [
+          "Account management"
+        ],
+        "summary": "Sign into account",
+        "description": "Sign into a created account",
+        "operationId": "signIn",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user email for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Account management"
+        ],
+        "summary": "Goto homepage Page",
+        "description": "Jump to homepage page for signin",
+        "operationId": "GotosignIn",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/allUsers/{email}": {
+      "get": {
+        "tags": [
+          "Account management"
+        ],
+        "summary": "Potential followers by (userid) email",
+        "description": "Find potential followers by email",
+        "operationId": "GetFollower",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "Find potential followers by email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          }
+        }
+      }
+    },
+    "/specificUsers/{email}": {
+      "get": {
+        "tags": [
+          "Account management"
+        ],
+        "summary": "Get specific user account information by (userid) email",
+        "description": "Find specific user account information by (userid) email",
+        "operationId": "GetUserAccountInfor",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "Find specific user account information by (userid) email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/addFollowers/{email}'": {
+      "post": {
+        "tags": [
+          "Account management"
+        ],
+        "summary": "Add Follower",
+        "description": "Add Follower based on user id",
+        "operationId": "AddFollower",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "The user email for login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "followeremail1"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          }
+        }
+      }
+    },
+    "/getCurrentContacts/{email}": {
+      "get": {
+        "tags": [
+          "Account management"
+        ],
+        "summary": "Get current contactor's account information",
+        "description": "Get current contactor's account information",
+        "operationId": "getCurrentContacts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "The user email for login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/profile/{email}/post": {
+      "get": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Get post information",
+        "description": "This endpoints use a get request to update user post image to backend",
+        "operationId": "addPicture",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "READ text and photos of the post",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Post"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/getPostByTags/{tag}": {
+      "get": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Get post by tags",
+        "description": "This endpoints use a get request to get the post by tags",
+        "operationId": "getPostByTags",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tag",
+            "description": "Get Post By Tags",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Post"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/profile/{email}/upload": {
+      "put": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Update user post image by email",
+        "description": "This endpoints use a post request to update user post image by email",
+        "operationId": "PostPostImage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "Update user post image by email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Request body",
+            "description": "update user post image by email",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/deletePost/{postid}": {
+      "delete": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Delete the post based on id",
+        "description": "Delete the post based on id",
+        "operationId": "deletePost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postid",
+            "in": "path",
+            "description": "Post id",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/deletePicture/{postid}": {
+      "delete": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Delete the picture of post based on id",
+        "description": "Delete the picture of post based on id",
+        "operationId": "deletePicture",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postid",
+            "in": "path",
+            "description": "Post id",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/deleteComment/{postid}": {
+      "delete": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Delete user comment in the post based on id",
+        "description": "Delete user comment in the post based on id",
+        "operationId": "deleteComment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postid",
+            "in": "path",
+            "description": "Post id",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Jump to userProfile Page",
+        "description": "This endpoints use a get request to go to userProfile.html",
+        "operationId": "gotoProfile",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/updateProfile": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Jump to update user Profile Page",
+        "description": "This endpoints use a get request to go to updateProfile.html",
+        "operationId": "gotoUpdateProfile",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/profile/{email}": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get user profile by email",
+        "description": "This endpoints use a get request to get user profile",
+        "operationId": "getProfile",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "Get user profile by email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserFile"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/totalPost/{user}": {
+      "get": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Get total number of post based on user email",
+        "description": "This endpoints to get total number of post based on user email ",
+        "operationId": "totalPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user",
+            "description": "user email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Post"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/unfollowUsers/{email}/unfollow": {
+      "post": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Unfollow the user",
+        "description": "Unfollow the user",
+        "operationId": "deletefollowuser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "user email",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          },
+          {
+            "name": "unfollow",
+            "description": "unfollow the user email",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FollowRelations"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/getActiveFeed": {
+      "get": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Jump to update user activityFeed Page",
+        "description": "This endpoints use a get request to go to activityFeed.html",
+        "operationId": "gotoActivityFeed",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FollowRelations"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/getActiveFeed/{email}": {
+      "get": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Get active feed based on (userid) email",
+        "description": "This endpoints use a get request to get active feed based on (userid) email",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "The user email for login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserFile"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/likePost/{user}/postid": {
+      "post": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Add like for user based on postid",
+        "description": "This endpoints is to add like for user based on postid",
+        "operationId": "likepost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "The user email for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "postid",
+            "in": "header",
+            "description": "id for the post",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Client must authenticate itself to get the requested response."
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/totalLikes/{user}": {
+      "get": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Get total likes based on user id",
+        "description": "This endpoints is to get total likes for that user based on user id",
+        "operationId": "totallikes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "The user email for login",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Post"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/postComment/{user}/postid": {
+      "post": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Add user comments to post based on user email and post id",
+        "description": "This endpoints is to add user comments to post based on user email and post id",
+        "operationId": "postComment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "The user email for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "postid",
+            "in": "header",
+            "description": "Id for the post with adding comment",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/editPostText/{postid}": {
+      "put": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Update user post text to post base on post id",
+        "description": "This endpoints is to update user post text to post base on post id",
+        "operationId": "editPostText",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postid",
+            "in": "path",
+            "description": "Post id for new comment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Requestbody",
+            "description": "Updated post text part in post object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/editComment/{postid}": {
+      "put": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Update user comment in his post base on post id",
+        "description": "This endpoints is to update user comment in his post base on post id",
+        "operationId": "editComment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postid",
+            "in": "path",
+            "description": "Post id for new comment",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Requestbody",
+            "description": "Updated comment part of post object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/editImage/{postid}": {
+      "put": {
+        "tags": [
+          "Post functionalities"
+        ],
+        "summary": "Update post image in post base on post id",
+        "description": "This endpoints is to update post image in the post base on post id",
+        "operationId": "editImage",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postid",
+            "in": "path",
+            "description": "Post id for new picture",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Requestbody",
+            "description": "Updated image part of post object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Post"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/updateProfile/{email}": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get Updated profile information",
+        "description": "Get Update profile information",
+        "operationId": "GetupdateProfilePost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "This endpoints use a get request to update user profile post to backend",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserFile"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Update user profile information",
+        "description": "Update user profile information",
+        "operationId": "PostupdateProfilePost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "This endpoints use a put request to update user profile post to backend",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          },
+          {
+            "in": "body",
+            "name": "request body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserFile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/showCurrentContacts/{email}": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get current contact user profile by user email",
+        "description": "Get current contact user profile by user email",
+        "operationId": "showCurrentContacts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "This endpoints use a get request to get current contact user profile by user email",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserFile"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/totalFollower/{email}": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get total number of follower based on user email",
+        "description": "Get total number of follower based on user email",
+        "operationId": "totalFollower",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "This endpoints use a get request to get total Follower based on user email",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "operation success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FollowRelations"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The client does not have access rights to the content"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Post": {
+      "type": "object",
+      "properties": {
+        "userid": {
+          "type": "string",
+          "format": "string"
+        },
+        "postid": {
+          "type": "number",
+          "format": "int64"
+        },
+        "text": {
+          "type": "string",
+          "format": "string"
+        },
+        "tag": {
+          "type": "string",
+          "format": "string"
+        },
+        "tagFriends": {
+          "type": "array",
+          "xml": {
+            "name": "userid",
+            "wrapped": true
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "type": "string",
+          "format": "string"
+        },
+        "likes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "likedBy": {
+          "type": "array",
+          "xml": {
+            "name": "userid",
+            "wrapped": true
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "dislikes": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dislikedBy": {
+          "type": "array",
+          "xml": {
+            "name": "userid",
+            "wrapped": true
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "comment": {
+          "type": "array",
+          "xml": {
+            "name": "comment",
+            "wrapped": true
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "commentator": {
+          "type": "array",
+          "xml": {
+            "name": "userid",
+            "wrapped": true
+          },
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UserFile": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "format": "string"
+        },
+        "birth": {
+          "type": "string",
+          "format": "string"
+        },
+        "gender": {
+          "type": "string",
+          "format": "string"
+        },
+        "marriage": {
+          "type": "string",
+          "format": "string"
+        },
+        "country": {
+          "type": "string",
+          "format": "string"
+        },
+        "state": {
+          "type": "string",
+          "format": "string"
+        },
+        "area": {
+          "type": "string",
+          "format": "string"
+        },
+        "street": {
+          "type": "string",
+          "format": "string"
+        },
+        "phone": {
+          "type": "string",
+          "format": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "string"
+        },
+        "company": {
+          "type": "string",
+          "format": "string"
+        },
+        "college": {
+          "type": "string",
+          "format": "string"
+        },
+        "selfIntro": {
+          "type": "string",
+          "format": "string"
+        },
+        "imageSrc": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "FollowRelations": {
+      "type": "object",
+      "properties": {
+        "userid": {
+          "type": "string",
+          "format": "string"
+        },
+        "followerid": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CIS557">
+<head>
+    <meta charset="UTF-8">
+    <title>MasterCode Photo-share App</title>
+    <link rel="stylesheet" href="stylesheets/homepage.css">
+    <link type="text/css" rel="stylesheet" href="stylesheets/homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+    <script type="text/javascript" src="javascript/app.js"></script>
+</head>
+<body>
+<div id="parent">
+    <div id="left_side">
+        <div id="logo">
+            <div id="title">ShareGram</div>
+        </div>
+        <div id="introduction">
+            <div class="text">A photo-share platform for you and your friends, connect with them <strong>NOW</strong>
+            </div>
+        </div>
+    </div>
+
+    <div id="right_side" ng-controller="signInController">
+        <!--<form action="/signIn" method="post">-->
+        <div id="inputBox">
+            <input type="text" ng-model="userName" class="input" name="userName" id="userName" placeholder="  Email"><br><br>
+            <input type="password" ng-model="password" class="input" name="password" id="password" placeholder="  Password"><br><br>
+            <button id="submit" value="Log in" ng-click="signIn()">Log in</button><br><br>
+            <!--<a href="resetPassword.html">Forget account?</a><br><br>-->
+            <div class="splitLine"></div><br>
+            <button type="button" id="register" onclick="location.href='/register';">Create new account</button><br><br>
+        </div>
+        <!--</form>-->
+    </div>
+</div>
+
+
+</body>
+</html>

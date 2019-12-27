@@ -1,0 +1,12 @@
+{
+  "swagger": "2.0",
+  "paths": {},
+  "info": {
+    "title": "cis557-project-photo-sharing-social-network-app-codemasters",
+    "version": "1.0.0",
+    "license": {
+      "name": "ISC"
+    },
+    "description": "[Specification JSON](/api-spec)\n\ncis 557 project"
+  }
+}

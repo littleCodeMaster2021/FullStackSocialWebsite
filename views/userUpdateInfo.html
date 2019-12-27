@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CIS557">
+
+<head>
+    <title>Code Master Team Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="#"/>
+    <link rel="stylesheet" href="bower_components/dropzone/dist/dropzone.css">
+    <link rel="stylesheet" href="stylesheets/userProfile.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="bower_components/dropzone/dist/dropzone.js"></script>
+    <script type="text/javascript" src="javascript/userUpdateInfo.js"></script>
+    <script type="text/javascript" src="javascript/app.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="updateUserInformation">
+    <div class="navbar-wrapper">
+        <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                                fclass="icon-bar"></span><span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="" class="tag">Stream</a></li>
+                            <!-- <li><span class="badge badge-important">2</span></li> -->
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                      <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
+                                        <img id="userImageFour" ng-src="{{image}}" alt="user image"
+                                             class="img-responsive img-circle" alt="user image"
+                                             style="width: 30px; height:30px">
+                                      </span>
+                                      <span class="dropdown"> {{userName}} 
+                                      </span>
+                                          <div class="dropdown-content">
+                                                <a class = "Signout" ng-model="signout" ng-click="signOut()">Sign out</a>
+                                          </div>
+                                          <b class="caret"></b>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+           </div>
+    </div>
+    <div id="parent">
+        <div id="left_side">
+            <div class="container bootstrap snippet">
+                <div class="row">
+                    <div class="col-sm-10"><h1>{{userName}}</h1></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3" ><!--left col-->
+                        <div class="text-center">
+                            <div id="userURL"></div>
+                            <img id="userImage" ng-src="{{image}}" alt="user image"
+                                 class="avatar img-circle img-thumbnail">
+                            <h6>Upload a new photo</h6>
+                            <input id="inputFileToLoad" type="file" class="text-center center-block file-upload"
+                                   onchange="angular.element(this).scope().convertImageAsURL()">
+                        </div>
+                        </hr><br>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>Activity</strong></div>
+                            <li class="list-group-item text-right"><span
+                                    class="pull-left"><strong>Shares by current user</strong><span
+                                    class="glyphicon glyphicon-share"></span>
+                                  </span>
+                                <p id="ActShares"> 0</p></li>
+                            <li class="list-group-item text-right"><span
+                                    class="pull-left"><strong>Likes by current user</strong><span
+                                    class="glyphicon glyphicon-thumbs-up"></span>
+                                  </span>
+                                <p id="ActLikes"> {{totalLikes}}</p></li>
+                            <li class="list-group-item text-right"><span
+                                    class="pull-left"><strong>Posts by current user</strong><span
+                                    class="glyphicon glyphicon-file"></span>
+                                  </span>
+                                <p id="ActPosts"> {{totalPosts}}</p></li>
+                            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers of current user</strong><span
+                                    class="glyphicon glyphicon-heart-empty"></span>
+                                  </span>
+                                <p id="ActFollowers"> {{totalFollowers}}</p></li>
+                        </div>
+
+                    </div><!--/col-3-->
+                    <div class="col-sm-9" ng-controller="updateUserInformation">
+                        <ul class="nav nav-tabs">
+                            <li><a href="{{getProfilePage()}}">User Profile</a></li>
+                            <li><a href="{{getUpdateInfoPage()}}">Add/Update Profile</a></li>
+                            <li><a href="{{getActiveFeed()}}">Activity Feed</a></li>
+                        </ul>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 ">
+                                    <div>
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <!-- Text input-->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="Name">Name (Full
+                                                        name)</label>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-user"></i>
+                                                            </div>
+                                                            <input id="Name" type="text" placeholder="Name (Full name)"
+                                                                   ng-model="userName" class="form-control input-md">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Text input-->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="DateOfBirth">Date Of
+                                                        Birth</label>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-birthday-cake"></i>
+                                                            </div>
+                                                            <input id="DateOfBirth" ng-model="DateOfBirth" type="date"
+                                                                   placeholder="Date Of Birth"
+                                                                   class="form-control input-md"
+                                                                   value="{{date | date: 'yyyy-MM-dd'}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Multiple Radios (inline) -->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="Gender">Gender</label>
+                                                    <div class="col-md-4">
+                                                        <form id='Gender'>
+                                                            <label class="radio-inline" for="Gender-0">
+                                                                <input type="radio" name="Gender" id="Gender-0"
+                                                                       ng-model="gender" value="Male">
+                                                                Male
+                                                            </label>
+                                                            <label class="radio-inline" for="Gender-1">
+                                                                <input type="radio" id="Gender-1" name="Gender"
+                                                                       ng-model="gender" value="Female">
+                                                                Female
+                                                            </label>
+                                                            <label class="radio-inline" for="Gender-2">
+                                                                <input type="radio" id="Gender-2" ng-model="gender"
+                                                                       value="Other" name="Gender">
+                                                                Other
+                                                            </label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Multiple Radios (inline) -->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="radios-0">Marital
+                                                        Status</label>
+                                                    <div class="col-md-4">
+                                                        <form id='marrageStatus'>
+                                                            <label class="radio-inline" for="radios-0">
+                                                                <input type="radio" name="marrageStatus" id="radios-0"
+                                                                       value="Married"
+                                                                       checked="checked" ng-model="marrageStatus">
+                                                                Married
+                                                            </label>
+                                                            <label class="radio-inline" for="radios-1">
+                                                                <input type="radio" name="marrageStatus" id="radios-1"
+                                                                       value="Unmarried" ng-model="marrageStatus">
+                                                                Unmarried
+                                                            </label>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label">Living Country</label>
+                                                    <div class="col-md-4">
+                                                        <!--BackEnd form!!!!-->
+                                                        <select id="Country" name="selectedCountry" ng-model="Country">
+                                                            <!--BackEnd form!!!!-->
+                                                            <option value="United States" selected="selected"> United
+                                                                States
+                                                            </option>
+                                                            <option value="Cananda"> Cananda</option>
+                                                            <option value="China"> China</option>
+                                                            <option value="French"> French</option>
+                                                            <option value="Germany"> Germany</option>
+                                                            <option value="India"> India</option>
+                                                            <option value="United Kingdom"> United Kingdom</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label col-xs-12">Current
+                                                        Address</label>
+                                                    <div class="col-md-2  col-xs-4">
+                                                        <input id="State" name="state" type="text" placeholder="State"
+                                                               class="form-control input-md " ng-model="state">
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-4">
+                                                        <input id="Area" name="area" type="text" placeholder="Area"
+                                                               class="form-control input-md " ng-model="area">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="Street"></label>
+                                                    <div class="col-md-2  col-xs-4">
+                                                        <input id="Street" name="street" type="text"
+                                                               placeholder="Street"
+                                                               class="form-control input-md " ng-model="street">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Text input-->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="Phone number">Phone
+                                                        number</label>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"></div>
+                                                            <input id="Phone number" type="tel" name="phone"
+                                                                   placeholder="Primary Phone number(10 digits) "
+                                                                   class="form-control input-md" ng-model="phone">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Text input-->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="Email Address">Email
+                                                        Address</label>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"></div>
+                                                            <input id="Email Address" name="email" type='email'
+                                                                   placeholder="Email Address"
+                                                                   class="form-control input-md" ng-model="email" readonly>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- Text input-->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="company">Current
+                                                        company</label>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"></div>
+                                                            <input id="company" name="company" type="text"
+                                                                   placeholder="Current company"
+                                                                   class="form-control input-md" ng-model="company">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="college">College/University</label>
+                                                    <div class="col-md-4">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"></div>
+                                                            <input id="college" name="college" type="text"
+                                                                   placeholder="College/University"
+                                                                   class="form-control input-md" ng-model="college">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Textarea -->
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="overview">Self
+                                                        Introduction(max 200
+                                                        words)</label>
+                                                    <div class="col-md-4">
+                                <textarea class="form-control" rows="10" name="selfIntro" id="overview"
+                                          placeholder="Self Introduction" ng-model="selfIntro"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label"></label>
+                                                    <div class="col-md-4">
+                                                        <!--   <input type="submit" value="Submit"> -->
+                                                        <button id ="submit" ng-click="submitSavedValues()" type="button"><span
+                                                                class="glyphicon glyphicon-thumbs-up"></span> Submit
+                                                        </button>
+                                                        <button id ="clear" onclick="clearAllField()" type="button"><span
+                                                                class="glyphicon glyphicon-remove-sign"></span> Clear
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+<!-- bootstrap template resource: https://bootsnipp.com/ -->
