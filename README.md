@@ -1,16 +1,18 @@
-## Project Deployment Link in Heroku:<br/>
-Swagger UI: https://calm-shore-02244.herokuapp.com/ <br/>
-Homepage: https://calm-shore-02244.herokuapp.com/index <br/>
-## Link to wiki: <br/>
-Project wiki: https://github.com/cis557/cis557-project-photo-sharing-social-network-app-codemasters/wiki/Project-Documentation
-<br/>
-Database design wiki: https://github.com/cis557/cis557-project-photo-sharing-social-network-app-codemasters/wiki/Database-Design <br/>
-Security wiki: https://github.com/cis557/cis557-project-photo-sharing-social-network-app-codemasters/wiki/Security <br/>
-## To run the application locally: <br/>
-* Type node index at terminal <br/>
-* Type: http://localhost:3000/ as url for checking the swagger document <br/>
-* Type: http://localhost:3000/index as url for logging in the application <br/>
-## To run tests
-* Tests for controllers could be directly checked in Travis CI
-* Tests for routers are in routerTest branch, you need to run yarn test --coverage locally, and make sure your MongoDB is open.
-* Selenium Tests are in selenium_tests_with_java branch, running instructions are states in the branch README.
+# cis557-project-photo-sharing-social-network-app-codemasters
+cis557-project-photo-sharing-social-network-app-codemasters created by GitHub Classroom
+
+This test is written purely in Java and can be run independent from unit test, since we are more familar with writing Selenium test in Java than written that in Jest. 
+
+## To run this test,please follow the step below:
+(1)Download SeleniumTestWrittenInJava package. <br>
+(2)Unzip the package.<br>
+(3)Undate your chrome brower to the lastest version: Version 78.0.3904.70 in my case.<br>
+(4)Edit the configuration for the test as:<br>
+![ER Diagram](https://github.com/cis557/cis557-project-photo-sharing-social-network-app-codemasters/blob/selenium_test_written_in_Java/sample%20configuration.png)
+Please set the proper work directory to point to the test. <br>
+(5)If the compilor informed "the maven projects needed to be imported", then you need to click import changes to import the require libraries. <br>
+(6)cd to the master directory, enter node index.js to the terminal to connect the server and run the web at localhost:3000/index.<br>
+(7)Change the format of the path from '/' to '\\' if your machine is windows, since '/' is only requested by mac. And Change the web driver path to "/src/test/java/chromedriver.exe" for windows rather than "/src/test/java/chromedriver" for mac. <br>
+(8)Run the ProjectTest.java file in any java compilor which is under SeleniumTestWrittenInJava/src/test/java folder.<br> 
+(9)If it passes all the tests, it won't return any error, otherwise, it will trigger the assertion failure error alert. <br>
+
